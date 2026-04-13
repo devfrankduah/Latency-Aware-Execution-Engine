@@ -1,0 +1,72 @@
+# ============================================
+# Default Configuration
+# ============================================
+# All hardcoded values live HERE, not in source code.
+# Override per-experiment by creating a new YAML file.
+
+project:
+  name: "latency-execution-engine"
+  version: "0.1.0"
+
+data:
+  # Primary dataset: Binance BTCUSDT
+  source: "binance"
+  symbols: ["BTCUSDT"]
+  asset_class: "spot"           # spot | um (USDT-M futures) | cm
+  data_type: "klines"           # klines | trades | aggTrades
+  frequency: "1m"               # 1m | 5m | 15m | 1h | 1d
+  start_date: "2023-01-01"
+  end_date: "2024-12-31"
+
+  # Storage
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  file_format: "parquet"        # parquet | csv
+
+  # Validation
+  max_missing_pct: 0.05         # Flag if >5% bars missing
+  min_volume_threshold: 0.0     # Filter zero-volume bars
+
+simulator:
+  # Order parameters
+  default_order_qty: 1.0        # BTC
+  time_horizon_minutes: 60      # Execute over 1 hour
+  bar_size_minutes: 1           # Simulation step size
+
+  # Market impact model (Almgren-Chriss)
+  permanent_impact_coeff: 0.1   # gamma - permanent impact
+  temporary_impact_coeff: 0.05  # eta - temporary impact
+  volatility_window: 20         # Rolling vol lookback (bars)
+  volume_window: 20             # Rolling volume lookback (bars)
+
+  # Slippage model
+  spread_bps: 1.0               # Assumed half-spread in basis points
+  participation_rate_cap: 0.10  # Max 10% of bar volume
+
+policies:
+  twap:
+    num_slices: 12              # Split order into N equal parts
+
+  almgren_chriss:
+    risk_aversion: [0.01, 0.1, 0.5, 1.0, 5.0]  # Lambda values to sweep
+
+  rl_adaptive:
+    algorithm: "dqn"            # dqn | ppo
+    state_features:
+      - "remaining_inventory_pct"
+      - "time_remaining_pct"
+      - "rolling_volatility"
+      - "volume_imbalance"
+      - "recent_return"
+    action_space: [0.0, 0.05, 0.1, 0.2, 0.5, 1.0]  # Fraction to execute
+    reward: "negative_shortfall" # Reward = -implementation_shortfall
+
+evaluation:
+  metrics:
+    - "implementation_shortfall"
+    - "vwap_slippage"
+    - "execution_cost_variance"
+    - "participation_rate"
+    - "num_child_orders"
+  n_simulations: 1000           # Monte Carlo runs per strategy
+  confidence_level: 0.95
