@@ -1,0 +1,53 @@
+# ============================================
+# Latency-Aware Execution Engine - .gitignore
+# ============================================
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ---------- Virtual Environment ----------
+venv/
+.venv/
+env/
+
+# ---------- Data (NEVER commit large data files) ----------
+data/raw/*
+data/processed/*
+data/external/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+# Models (too large for GitHub)
+*.pt
+models/
+
+# ---------- Notebooks Checkpoints ----------
+.ipynb_checkpoints/
+
+# ---------- IDE ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+
+# ---------- Experiment Tracking ----------
+mlruns/
+wandb/
+large_sweep.txt
+multi_real.txt
+multi_train.txt
+
+# ---------- Secrets ----------
+.env
+*.key
