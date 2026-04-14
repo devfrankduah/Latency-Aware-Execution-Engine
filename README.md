@@ -121,44 +121,44 @@ Raw Market Data (Binance OHLCV + Tick Trades)
         │
         ▼
 ┌──────────────────┐
-│  Data Ingestion   │  download_data.py, validate_data.py
-│  & Validation     │  → Schema validation, 7 quality checks
-│                   │  → 2.6M bars per asset, 126 GB tick data
+│  Data Ingestion  │  download_data.py, validate_data.py
+│  & Validation    │  → Schema validation, 7 quality checks
+│                  │  → 2.6M bars per asset, 126 GB tick data
 └────────┬─────────┘
          │
          ▼
 ┌──────────────────┐
-│  Feature          │  src/features/engine.py
-│  Engineering      │  → 14 features: volatility, volume, spread,
-│                   │    momentum, time-of-day encoding
+│  Feature         │  src/features/engine.py
+│  Engineering     │  → 14 features: volatility, volume, spread,
+│                  │    momentum, time-of-day encoding
 └────────┬─────────┘
          │
          ▼
 ┌──────────────────┐
-│  Execution        │  src/simulator/impact.py + engine.py
-│  Simulator        │  → Almgren-Chriss impact model
-│                   │  → Variable spread from real data
-│                   │  → Cost = spread + η × price × part^1.5
+│  Execution       │  src/simulator/impact.py + engine.py
+│  Simulator       │  → Almgren-Chriss impact model
+│                  │  → Variable spread from real data
+│                  │  → Cost = spread + η × price × part^1.5
 └────────┬─────────┘
          │
     ┌────┴────┐
     │         │
     ▼         ▼
 ┌────────┐ ┌─────────────┐
-│Baselines│ │ RL Agent     │
-│ TWAP   │ │ Double DQN   │  14-dim state, 7 VWAP-relative actions
-│ VWAP   │ │ + Dueling    │  Terminal reward: savings vs VWAP in bps
-│ A-C    │ │ + PER        │  50K episodes, 3 assets
-│ Immed. │ │ + LayerNorm  │
+│Baselines││ RL Agent    │
+│ TWAP   │ │ Double DQN  │  14-dim state, 7 VWAP-relative actions
+│ VWAP   │ │ + Dueling   │  Terminal reward: savings vs VWAP in bps
+│ A-C    │ │ + PER       │  50K episodes, 3 assets
+│ Immed. │ │ + LayerNorm │
 └───┬────┘ └──────┬──────┘
     │              │
     ▼              ▼
 ┌──────────────────┐
-│  Evaluation       │  Monte Carlo (500+ sims per strategy)
-│                   │  Walk-forward: Train 2020-23 → Test 2024 H2
-│  → Regime analysis│  Cross-asset generalization (BTC, ETH, SOL)
-│  → Tick-level     │  98M real trade validation
-│  → Failure cases  │  Edge cases, limitations, ethics
+│  Evaluation      │  Monte Carlo (500+ sims per strategy)
+│                  │  Walk-forward: Train 2020-23 → Test 2024 H2
+│ → Regime analysis│  Cross-asset generalization (BTC, ETH, SOL)
+│  → Tick-level    │  98M real trade validation
+│  → Failure cases │  Edge cases, limitations, ethics
 └──────────────────┘
 ```
 
