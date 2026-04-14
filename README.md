@@ -49,8 +49,8 @@ This project builds a complete system to answer that question using real market 
 ### Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/latency-execution-engine.git
-cd latency-execution-engine
+git clone https://github.com/YOUR_USERNAME/Latency-Aware-Execution-Engine.git
+cd Latency-Aware-Execution-Engine
 python -m venv venv && source venv/bin/activate
 pip install pandas numpy pyarrow pyyaml torch tqdm requests matplotlib seaborn
 ```
@@ -167,7 +167,7 @@ Raw Market Data (Binance OHLCV + Tick Trades)
 ## Repository Structure
 
 ```
-latency-execution-engine/
+Latency-Aware-Execution-Engine/
 ├── src/                            # Source code (Python package)
 │   ├── __init__.py                 # v1.0.0
 │   ├── data/
