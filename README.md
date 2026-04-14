@@ -1,7 +1,7 @@
 # Latency-Aware Execution Engine for Portfolio Rebalancing
 
-[![Tests](https://github.com/devfrankduah/Latency-Aware-Execution-Engine /actions/workflows/tests.yml/badge.svg)](https://github.com/devfrankduah/Latency-Aware-Execution-Engine /actions/workflows/tests.yml)
-<!-- [![codecov](https://codecov.io/gh/devfrankduah/Latency-Aware-Execution-Engine /graph/badge.svg)](https://codecov.io/gh/devfrankduah/Latency-Aware-Execution-Engine ) -->
+[![Tests](https://github.com/devfrankduah/Latency-Aware-Execution-Engine/actions/workflows/tests.yml/badge.svg)](https://github.com/devfrankduah/Latency-Aware-Execution-Engine/actions/workflows/tests.yml)
+<!-- [![codecov](https://codecov.io/gh/devfrankduah/Latency-Aware-Execution-Engine/graph/badge.svg)](https://codecov.io/gh/devfrankduah/Latency-Aware-Execution-Engine) -->
 
 A production-quality trade execution system that minimizes slippage on large cryptocurrency orders using reinforcement learning. Trained on 7.5M bars of real Binance market data across 3 assets, evaluated walk-forward on fully out-of-sample 2024 data, and validated against 98M real tick-level trades.
 
