@@ -15,4 +15,4 @@ Modules:
 """
 
 __version__ = "1.0.0"
-__author__ = "Nikhilesh"
+__author__ = "Nikhilesh Waghmare, Aniket Ghosh and Frank Duah"
