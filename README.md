@@ -11,7 +11,7 @@ A production-quality trade execution system that minimizes slippage on large cry
 
 ## Results
 
-### Strategy Comparison (1 BTC, 500 simulations)
+### Strategy Comparison (50 BTC, 500 simulations)
 
 | Strategy            | Cost ($)   | vs TWAP    |
 | ------------------- | ---------- | ---------- |
